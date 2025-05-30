@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -19,33 +19,68 @@ import MachineMaintenance from './components/MachineMaintenance';
 import SuperScheduleDashboard from './components/SuperScheduleDashboard';
 import SuperServiceEngineerDashboard from './components/SuperServiceEngineerDashboard';
 import About from "./components/About";
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
+  // Header/Footer सिर्फ login और forgot-password पर hide करें
+  const hideHeaderFooter = window.location.hash === '#/' || window.location.hash === '#/forgot-password';
+
   return (
-    <BrowserRouter>
-      <Header />
+    <HashRouter>
+      {!hideHeaderFooter && <Header />}
       <div style={{ minHeight: "calc(100vh - 110px)" }}>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/user-home" element={<UserHome />} />
-          <Route path="/admin-home" element={<AdminHome />} />
-          <Route path="/dashboard1" element={<MachineAssignDashboard />} />
-          <Route path="/broadcast" element={<BroadcastMessage />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/competency" element={<CompetencyMonitoring />} />
-          <Route path="/super-competency" element={<SuperCompetencyDashboard />} />
-          <Route path="/superuser-profiles" element={<SuperUserProfileDashboard />} />
-          <Route path="/road-learning" element={<RoadLearning />} />
-          <Route path="/super-road-learning" element={<SuperRoadLearningDashboard />} />
-          <Route path="/machine-maintenance" element={<MachineMaintenance />} />
-		   <Route path="/about" element={<About />} />
-          <Route path="/super-schedule-dashboard" element={<SuperScheduleDashboard />} />
-          <Route path="/super-service-engineer" element={<SuperServiceEngineerDashboard />} />
+
+          {/* Protected Routes */}
+          <Route path="/user-home" element={
+            <ProtectedRoute><UserHome /></ProtectedRoute>
+          } />
+          <Route path="/admin-home" element={
+            <ProtectedRoute><AdminHome /></ProtectedRoute>
+          } />
+          <Route path="/dashboard1" element={
+            <ProtectedRoute><MachineAssignDashboard /></ProtectedRoute>
+          } />
+          <Route path="/broadcast" element={
+            <ProtectedRoute><BroadcastMessage /></ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute><UserProfile /></ProtectedRoute>
+          } />
+          <Route path="/competency" element={
+            <ProtectedRoute><CompetencyMonitoring /></ProtectedRoute>
+          } />
+          <Route path="/super-competency" element={
+            <ProtectedRoute><SuperCompetencyDashboard /></ProtectedRoute>
+          } />
+          <Route path="/superuser-profiles" element={
+            <ProtectedRoute><SuperUserProfileDashboard /></ProtectedRoute>
+          } />
+          <Route path="/road-learning" element={
+            <ProtectedRoute><RoadLearning /></ProtectedRoute>
+          } />
+          <Route path="/super-road-learning" element={
+            <ProtectedRoute><SuperRoadLearningDashboard /></ProtectedRoute>
+          } />
+          <Route path="/machine-maintenance" element={
+            <ProtectedRoute><MachineMaintenance /></ProtectedRoute>
+          } />
+          <Route path="/about" element={
+            <ProtectedRoute><About /></ProtectedRoute>
+          } />
+          <Route path="/super-schedule-dashboard" element={
+            <ProtectedRoute><SuperScheduleDashboard /></ProtectedRoute>
+          } />
+          <Route path="/super-service-engineer" element={
+            <ProtectedRoute><SuperServiceEngineerDashboard /></ProtectedRoute>
+          } />
         </Routes>
       </div>
-      <Footer />
-    </BrowserRouter>
+      {!hideHeaderFooter && <Footer />}
+    </HashRouter>
   );
 }
 
