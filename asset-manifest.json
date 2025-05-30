@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/tm-jbp-live/static/js/main.004cd849.js",
+    "main.js": "/tm-jbp-live/static/js/main.fee2ab95.js",
     "index.html": "/tm-jbp-live/index.html",
-    "main.004cd849.js.map": "/tm-jbp-live/static/js/main.004cd849.js.map"
+    "main.fee2ab95.js.map": "/tm-jbp-live/static/js/main.fee2ab95.js.map"
   },
   "entrypoints": [
-    "static/js/main.004cd849.js"
+    "static/js/main.fee2ab95.js"
   ]
 }
